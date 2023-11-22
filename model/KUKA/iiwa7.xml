@@ -1,0 +1,97 @@
+<mujoco model="iiwa7">
+  <compiler angle="radian" meshdir="./mesh/collision/"/>
+  <statistic meansize="0.17628" extent="1.44361" center="-0.000411357 -0.010872 0.595861"/>
+
+  <default>
+    <light castshadow="false" diffuse="1 1 1" />
+    <camera fovy="60" />
+    <default class="visual">
+      <geom contype="0" conaffinity="0" group="1" type="mesh" rgba="0.9 0.9 0.9 1.0" />
+    </default>
+    <default class="collision">
+      <geom contype="1" conaffinity="1" friction="1.0 0.8 0.8" rgba="0.9 0.3 0.4 0" margin="0.001"
+        group="0" />
+    </default>
+    <joint damping="0.01" armature="0.01" frictionloss="0.2" />
+  </default>
+  <visual>
+    <rgba com="0.502 1.0 0 1.0" contactpoint="0.5 0.1 0.8 0.4" contactforce="0.2 0.98 0.2 0.8" />
+    <scale com="0.2" forcewidth="0.05" contactwidth="0.10" contactheight="0.04" />
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" width="512" height="512" rgb1="0.6 0.6 0.6"
+      rgb2="0.6 0.6 0.6" />
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".4 .4 .4" rgb2=".6 .6 .6"
+      width="512"
+      height="512" mark="cross" markrgb="0 0 0" />
+    <material name="plane" reflectance='0' texture="texplane" texrepeat="1 1"
+      texuniform="true"
+      rgba=".7 .7 .7 1" />
+    
+    <mesh name="link_0" file="link_0.stl"/>
+    <mesh name="link_1" file="link_1.stl"/>
+    <mesh name="link_2" file="link_2.stl"/>
+    <mesh name="link_3" file="link_3.stl"/>
+    <mesh name="link_4" file="link_4.stl"/>
+    <mesh name="link_5" file="link_5.stl"/>
+    <mesh name="link_6" file="link_6.stl"/>
+    <mesh name="link_7" file="link_7.stl"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" pos="0 0 0" euler="0 0 0" size="0 0 1" type="plane" material="plane"
+      condim="3" conaffinity="1" contype="1" rgba="1 1 1 1" />
+    <light directional="true" diffuse=".8 .8 .8" pos="0 0 10" dir="0 0 -10" />
+    <camera name="track" mode="trackcom" pos="0 -2.3 1.6" xyaxes="1 0 0 0 0.707 0.707" />
+
+    <body name="Obstacle" pos="0 0.5 0.1">
+       <geom type="box" pos="0 0 0" size="0.2 0.05 0.2" rgba=" .25 .26 .25 1"/>
+    </body>
+    
+    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.4 0.4 0.4 1" mesh="link_0"/>
+    <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="link_0"/>
+    <body name="iiwa_link_1" pos="0 0 0.15">
+      <inertial pos="0 -0.03 0.12" quat="0.428904 0.562175 -0.562175 0.428904" mass="3.4525" diaginertia="0.0218946 0.02183 0.00663837"/>
+      <joint name="iiwa_joint_1" pos="0 0 0" axis="0 0 1" range="-2.96706 2.96706" damping="0.5"/>
+      <geom pos="0 0 0.0075" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.4 0.4 0.4 1" mesh="link_1"/>
+      <geom pos="0 0 0.0075" type="mesh" rgba="0.4 0.4 0.4 1" mesh="link_1"/>
+      <body name="iiwa_link_2" pos="0 0 0.19" quat="0 0 0.707107 0.707107">
+        <inertial pos="0.0003 0.059 0.042" quat="0.701371 0.0898824 0.0898824 0.701371" mass="3.4821" diaginertia="0.02179 0.0217049 0.00684512"/>
+        <joint name="iiwa_joint_2" pos="0 0 0" axis="0 0 1" range="-2.0944 2.0944" damping="0.5"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 0.423529 0.0392157 1" mesh="link_2"/>
+        <geom type="mesh" rgba="1 0.423529 0.0392157 1" mesh="link_2"/>
+        <body name="iiwa_link_3" pos="0 0.21 0" quat="0 0 0.707107 0.707107">
+          <inertial pos="0 0.03 0.13" quat="0.56292 0.427927 -0.427927 0.56292" mass="4.05623" diaginertia="0.0321488 0.03204 0.00799117"/>
+          <joint name="iiwa_joint_3" pos="0 0 0" axis="0 0 1" range="-2.96706 2.96706" damping="0.5"/>
+          <geom pos="0 0 -0.026" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.4 0.4 0.4 1" mesh="link_3"/>
+          <geom pos="0 0 -0.026" type="mesh" rgba="0.4 0.4 0.4 1" mesh="link_3"/>
+          <body name="iiwa_link_4" pos="0 0 0.19" quat="0.707107 0.707107 0 0">
+            <inertial pos="0 0.067 0.034" quat="0.991887 -0.127124 0 0" mass="3.4822" diaginertia="0.02178 0.0216947 0.00684029"/>
+            <joint name="iiwa_joint_4" pos="0 0 0" axis="0 0 1" range="-2.0944 2.0944" damping="0.5"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.4 0.4 0.4 1" mesh="link_4"/>
+            <geom type="mesh" rgba="0.4 0.4 0.4 1" mesh="link_4"/>
+            <body name="iiwa_link_5" pos="0 0.21 0" quat="0 0 0.707107 0.707107">
+              <inertial pos="0.0001 0.021 0.076" quat="0.365352 0.605407 -0.605407 0.365352" mass="2.1633" diaginertia="0.0131987 0.01287 0.0036293"/>
+              <joint name="iiwa_joint_5" pos="0 0 0" axis="0 0 1" range="-2.96706 2.96706" damping="0.5"/>
+              <geom pos="0 0 -0.026" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.4 0.4 0.4 1" mesh="link_5"/>
+              <geom pos="0 0 -0.026" type="mesh" rgba="0.4 0.4 0.4 1" mesh="link_5"/>
+              <body name="iiwa_link_6" pos="0 0.0607 0.19" quat="0.707107 0.707107 0 0">
+                <inertial pos="0 0.0006 0.0004" quat="0.996112 0.088097 0 0" mass="2.3466" diaginertia="0.006509 0.00631585 0.00447015"/>
+                <joint name="iiwa_joint_6" pos="0 0 0" axis="0 0 1" range="-2.0944 2.0944" damping="0.5"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 0.423529 0.0392157 1" mesh="link_6"/>
+                <geom type="mesh" rgba="1 0.423529 0.0392157 1" mesh="link_6"/>
+                <body name="iiwa_link_7" pos="0 0.081 0.0607" quat="0 0 0.707107 0.707107">
+                  <inertial pos="0 0 0.02" quat="0.923068 0 0 0.384636" mass="3.129" diaginertia="0.0152362 0.0140538 0.002872"/>
+                  <joint name="iiwa_joint_7" pos="0 0 0" axis="0 0 1" range="-3.05433 3.05433" damping="0.5"/>
+                  <geom pos="0 0 -0.0005" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.4 0.4 0.4 1" mesh="link_7"/>
+                  <geom pos="0 0 -0.0005" type="mesh" rgba="0.4 0.4 0.4 1" mesh="link_7"/>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>
